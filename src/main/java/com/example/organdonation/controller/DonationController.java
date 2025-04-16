@@ -15,21 +15,18 @@ public class DonationController {
     @Autowired
     private DonationService donationService;
 
-    
     @PostMapping
     public ResponseEntity<Donation> addDonation(@RequestBody Donation donation) {
         Donation createdDonation = donationService.addDonation(donation);
         return ResponseEntity.status(201).body(createdDonation);
     }
 
-    
     @GetMapping
     public ResponseEntity<List<Donation>> getAllDonations() {
         List<Donation> donations = donationService.getAllDonations();
         return ResponseEntity.ok(donations);
     }
 
-    
     @GetMapping("/{id}")
     public ResponseEntity<Donation> getDonationById(@PathVariable Long id) {
         return donationService.getDonationById(id)
@@ -37,7 +34,6 @@ public class DonationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDonation(@PathVariable Long id) {
         donationService.deleteDonation(id);
